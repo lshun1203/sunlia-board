@@ -4,35 +4,42 @@
   <meta charset="UTF-8">
   <title>Liao Shun Index</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+      font-family: 'Orbitron', sans-serif;
     }
 
     body {
-      background: #f5f5f7;
-      color: #333;
+      background-color: #0d0d0d;
+      color: #f0f0f0;
     }
 
     header {
-      background: url('https://picsum.photos/800/300?grayscale') center/cover no-repeat;
       height: 200px;
       position: relative;
+      background: linear-gradient(135deg, #0fffc1, #7e0fff);
+      animation: pulseBG 8s infinite linear alternate;
+    }
+
+    @keyframes pulseBG {
+      0% { filter: hue-rotate(0deg); }
+      100% { filter: hue-rotate(360deg); }
     }
 
     .avatar {
       width: 100px;
       height: 100px;
       border-radius: 50%;
-      border: 4px solid white;
+      border: 4px solid #0fffc1;
       position: absolute;
       bottom: -50px;
       left: 20px;
-      background: white;
       object-fit: cover;
+      box-shadow: 0 0 12px #0fffc1, 0 0 20px #7e0fff;
     }
 
     .info {
@@ -40,37 +47,50 @@
     }
 
     .name {
-      font-size: 24px;
-      font-weight: 600;
+      font-size: 26px;
+      font-weight: 700;
+      color: #0fffc1;
+      text-shadow: 0 0 5px #0fffc1, 0 0 10px #7e0fff;
     }
 
     .desc {
       font-size: 14px;
-      color: #666;
+      color: #aaa;
       margin-top: 4px;
     }
 
     .quote {
       margin-top: 6px;
       font-size: 14px;
+      color: #f0f0f0;
       font-style: italic;
-      color: #999;
+      animation: flicker 3s infinite;
+    }
+
+    @keyframes flicker {
+      0% { opacity: 1; }
+      45% { opacity: 0.85; }
+      50% { opacity: 0.5; }
+      55% { opacity: 0.9; }
+      60% { opacity: 0.4; }
+      100% { opacity: 1; }
     }
 
     nav {
       display: flex;
       justify-content: space-around;
-      background: white;
+      background: #1a1a1a;
       padding: 10px 0;
-      border-top: 1px solid #eee;
-      border-bottom: 1px solid #eee;
+      border-top: 1px solid #333;
+      border-bottom: 1px solid #333;
       margin-top: 10px;
     }
 
     nav a {
       text-decoration: none;
-      color: #007aff;
-      font-weight: 500;
+      color: #0fffc1;
+      font-weight: 600;
+      text-shadow: 0 0 4px #0fffc1;
     }
 
     section {
@@ -78,9 +98,10 @@
     }
 
     .card {
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+      background: #1a1a1a;
+      border-radius: 10px;
+      border: 1px solid #333;
+      box-shadow: 0 0 5px #0fffc1, 0 0 10px #7e0fff;
       padding: 15px;
       margin-bottom: 15px;
     }
@@ -88,12 +109,13 @@
     .card h3 {
       margin-bottom: 10px;
       font-size: 18px;
+      color: #7e0fff;
     }
 
     .footer {
       text-align: center;
-      color: #aaa;
-      font-size: 13px;
+      color: #666;
+      font-size: 12px;
       padding: 20px 0;
     }
   </style>
@@ -106,7 +128,7 @@
 
 <div class="info">
   <div class="name">Liao Shun</div>
-  <div class="desc">欢迎来到我的主页</div>
+  <div class="desc">Cyber Index // 欢迎进入我的数字空间</div>
   <div class="quote">为谁撑伞，雨中寒暄……</div>
 </div>
 
@@ -120,29 +142,26 @@
 <section>
   <div class="card">
     <h3>📌 我的简介</h3>
-    <p>这里是 Liao Shun 的个人主页，可以展示日记、想法、相册、或者留言板等内容。</p>
+    <p>这里是 Liao Shun 的个人主页，赛博世界中独立存在的节点。</p>
   </div>
 
   <div class="card">
     <h3>📝 最新动态</h3>
-    <p>2025-06-22：上线了我的个人主页！<br>更多内容正在整理中…</p>
+    <p>2025-06-22：主页系统上线，霓虹启动。</p>
   </div>
 </section>
 
 <div class="footer">
-  © 2025 Liao Shun Index | Powered by HTML & CSS
+  © 2025 Liao Shun Index | Cyberpunk Edition
 </div>
 
 <script>
-  // 可选：多句文艺签名句库，刷新自动更换
   const quotes = [
     "为谁撑伞，雨中寒暄……",
     "夜色温柔，月亮失眠。",
-    "风吹过山谷，也吹过我心。",
-    "你是我写过最温柔的一首诗。",
-    "等风，也等你。",
-    "我在人间贩卖黄昏，只为收集世间温柔。",
-    "山河远阔，人间烟火，无一是你，无一不是你。"
+    "电光照亮的不是回忆，是失联的你。",
+    "雨滴落下前，云已经哭完了。",
+    "在无声的夜晚，信号灯都懂寂寞。"
   ];
   document.querySelector('.quote').textContent = quotes[Math.floor(Math.random() * quotes.length)];
 </script>
