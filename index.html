@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Liao Shun Index</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- 粒子背景库 -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
   <style>
     * {
@@ -13,21 +15,29 @@
       font-family: 'Orbitron', sans-serif;
     }
 
-    body {
+    body, html {
+      width: 100%;
+      height: 100%;
       background-color: #0d0d0d;
       color: #f0f0f0;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      top: 0;
+      left: 0;
     }
 
     header {
-      height: 200px;
+      height: 220px;
       position: relative;
-      background: linear-gradient(135deg, #0fffc1, #7e0fff);
-      animation: pulseBG 8s infinite linear alternate;
-    }
-
-    @keyframes pulseBG {
-      0% { filter: hue-rotate(0deg); }
-      100% { filter: hue-rotate(360deg); }
+      background: linear-gradient(135deg, rgba(10,10,10,0.6), rgba(20,20,20,0.4));
+      backdrop-filter: blur(2px);
     }
 
     .avatar {
@@ -39,7 +49,8 @@
       bottom: -50px;
       left: 20px;
       object-fit: cover;
-      box-shadow: 0 0 12px #0fffc1, 0 0 20px #7e0fff;
+      box-shadow: 0 0 10px #0fffc1, 0 0 20px #7e0fff;
+      z-index: 1;
     }
 
     .info {
@@ -50,7 +61,7 @@
       font-size: 26px;
       font-weight: 700;
       color: #0fffc1;
-      text-shadow: 0 0 5px #0fffc1, 0 0 10px #7e0fff;
+      text-shadow: 0 0 8px #0fffc1, 0 0 20px #7e0fff;
     }
 
     .desc {
@@ -122,6 +133,9 @@
 </head>
 <body>
 
+<!-- 🌌 粒子动画背景 -->
+<div id="particles-js"></div>
+
 <header>
   <img class="avatar" src="https://i.pravatar.cc/100?u=liaoshun" alt="头像">
 </header>
@@ -156,14 +170,43 @@
 </div>
 
 <script>
+  // 句子切换
   const quotes = [
     "为谁撑伞，雨中寒暄……",
     "夜色温柔，月亮失眠。",
     "电光照亮的不是回忆，是失联的你。",
-    "雨滴落下前，云已经哭完了。",
-    "在无声的夜晚，信号灯都懂寂寞。"
+    "在无声的夜晚，信号灯都懂寂寞。",
+    "光的尽头不是你，却像你。"
   ];
   document.querySelector('.quote').textContent = quotes[Math.floor(Math.random() * quotes.length)];
+
+  // 初始化粒子背景
+  particlesJS('particles-js', {
+    particles: {
+      number: { value: 80 },
+      color: { value: "#0fffc1" },
+      shape: { type: "circle" },
+      opacity: { value: 0.5 },
+      size: { value: 3 },
+      line_linked: {
+        enable: true,
+        distance: 150,
+        color: "#7e0fff",
+        opacity: 0.4,
+        width: 1
+      },
+      move: {
+        enable: true,
+        speed: 2
+      }
+    },
+    interactivity: {
+      events: {
+        onhover: { enable: true, mode: "repulse" }
+      }
+    },
+    retina_detect: true
+  });
 </script>
 
 </body>
