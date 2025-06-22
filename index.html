@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sunlia 比分板</title>
+  <title>Sunlia 比分板（可交互）</title>
   <style>
     body {
       margin: 0;
@@ -41,6 +41,7 @@
       display: flex;
       gap: 1rem;
       justify-content: space-around;
+      flex-wrap: wrap;
     }
     .tag {
       padding: 0.4rem 0.8rem;
@@ -51,6 +52,31 @@
     .green { background: #2e8b57; }
     .yellow { background: #ffcc00; color: #000; }
     .red { background: #cc0000; }
+    .control {
+      margin-top: 2rem;
+      background: #1a1a1a;
+      padding: 1rem;
+      border-radius: 12px;
+      width: 100%;
+      max-width: 600px;
+    }
+    .control input {
+      width: 80px;
+      margin: 0 0.5rem;
+      padding: 0.3rem;
+      font-size: 1rem;
+      text-align: center;
+    }
+    .control button {
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      background: #2e8b57;
+      color: white;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
@@ -58,13 +84,13 @@
   <div class="scoreboard">
     <div class="team">
       <div><strong>夜魇（Aurora）</strong></div>
-      <div><strong>24</strong> 击杀</div>
+      <div><strong id="score1">24</strong> 击杀</div>
     </div>
     <div class="team">
       <div><strong>天辉（XG）</strong></div>
-      <div><strong>10</strong> 击杀</div>
+      <div><strong id="score2">10</strong> 击杀</div>
     </div>
-    <div class="info">
+    <div class="info" id="statusText">
       <p>当前节奏：Aurora 团灭 XG，处于控图推进阶段</p>
       <p>经济差：+9.5K</p>
       <p>控盾情况：未持盾</p>
@@ -75,5 +101,33 @@
       <div class="tag red">⛔ 回避 XG 所有盘口</div>
     </div>
   </div>
+
+  <div class="control">
+    <h3>🔧 实时控制台</h3>
+    <label>夜魇击杀：</label><input type="number" id="input1" value="24">
+    <label>天辉击杀：</label><input type="number" id="input2" value="10">
+    <br>
+    <label>节奏说明：</label><input id="input3" style="width:300px;" value="Aurora 团灭 XG，处于控图推进阶段">
+    <br>
+    <label>经济差：</label><input id="input4" value="+9.5K">
+    <label>盾：</label><input id="input5" value="未持盾">
+    <br>
+    <button onclick="updateBoard()">更新比分板</button>
+  </div>
+
+  <script>
+    function updateBoard() {
+      document.getElementById('score1').textContent = document.getElementById('input1').value;
+      document.getElementById('score2').textContent = document.getElementById('input2').value;
+      const s = document.getElementById('input3').value;
+      const e = document.getElementById('input4').value;
+      const d = document.getElementById('input5').value;
+      document.getElementById('statusText').innerHTML = `
+        <p>当前节奏：${s}</p>
+        <p>经济差：${e}</p>
+        <p>控盾情况：${d}</p>
+      `;
+    }
+  </script>
 </body>
 </html>
