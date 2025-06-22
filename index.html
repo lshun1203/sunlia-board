@@ -50,7 +50,17 @@
       left: 20px;
       object-fit: cover;
       box-shadow: 0 0 10px #0fffc1, 0 0 20px #7e0fff;
+      animation: glowPulse 2.5s infinite alternate;
       z-index: 1;
+    }
+
+    @keyframes glowPulse {
+      0% {
+        box-shadow: 0 0 10px #0fffc1, 0 0 20px #7e0fff;
+      }
+      100% {
+        box-shadow: 0 0 25px #0fffc1, 0 0 35px #7e0fff;
+      }
     }
 
     .info {
@@ -137,7 +147,8 @@
 <div id="particles-js"></div>
 
 <header>
-  <img class="avatar" src="https://i.pravatar.cc/100?u=liaoshun" alt="头像">
+  <!-- 🎞 动画头像（可替换成你自己的 GIF 链接） -->
+  <img class="avatar" src="https://media.giphy.com/media/hvRJCLFzcasrR4ia7z/giphy.gif" alt="头像">
 </header>
 
 <div class="info">
@@ -170,7 +181,7 @@
 </div>
 
 <script>
-  // 句子切换
+  // 🌠 随机签名句切换
   const quotes = [
     "为谁撑伞，雨中寒暄……",
     "夜色温柔，月亮失眠。",
@@ -180,7 +191,7 @@
   ];
   document.querySelector('.quote').textContent = quotes[Math.floor(Math.random() * quotes.length)];
 
-  // 初始化粒子背景
+  // 🌌 初始化粒子背景
   particlesJS('particles-js', {
     particles: {
       number: { value: 80 },
@@ -211,3 +222,4 @@
 
 </body>
 </html>
+
