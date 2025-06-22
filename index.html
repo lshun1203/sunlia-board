@@ -9,7 +9,7 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Orbitron', sans-serif;
-      background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e') center/cover no-repeat;
+      background: linear-gradient(rgba(255,255,255,0.3), rgba(255,255,255,0.3)), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e') center/cover no-repeat;
       background-attachment: fixed;
       color: #ffffff;
       display: flex;
@@ -28,6 +28,12 @@
       box-shadow: 0 0 10px #0fffc1, 0 0 20px #7e0fff;
       background: url('https://images.unsplash.com/photo-1555685812-4b943f1cb0eb') center/cover no-repeat;
       margin: 0 auto;
+      animation: float 3s ease-in-out infinite;
+    }
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+      100% { transform: translateY(0); }
     }
     header .name {
       margin-top: 10px;
@@ -44,16 +50,17 @@
       margin: auto;
       padding: 20px;
       gap: 40px;
+      flex-wrap: wrap;
     }
-    .left, .right {
-      width: 25%;
-    }
-    .center {
-      width: 50%;
+
+    .column {
+      flex: 1;
+      min-width: 280px;
+      max-width: 400px;
     }
 
     .card {
-      background: rgba(255, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.25);
       border: 1px solid #ccc;
       border-radius: 12px;
       padding: 25px;
@@ -74,12 +81,12 @@
       font-style: italic;
       font-size: 14px;
       margin-top: 5px;
-      color: #444;
+      color: #ccc;
     }
     .footer {
       text-align: center;
       font-size: 12px;
-      color: #777;
+      color: #aaa;
       padding: 20px 0;
     }
     input, textarea {
@@ -99,15 +106,22 @@
       font-weight: bold;
       border-radius: 6px;
       cursor: pointer;
+      margin-right: 8px;
     }
     .message-item {
-      border-top: 1px solid #999;
-      margin-top: 12px;
-      padding-top: 12px;
+      background: rgba(255,255,255,0.5);
+      border-radius: 10px;
+      padding: 10px;
+      margin-top: 10px;
     }
     .timestamp {
       font-size: 12px;
       color: #555;
+      text-align: right;
+    }
+    @media (max-width: 768px) {
+      .container { flex-direction: column; align-items: center; }
+      .column { width: 90%; }
     }
   </style>
 </head>
@@ -121,8 +135,7 @@
   </header>
 
   <div class="container">
-    <!-- 左栏 -->
-    <div class="left">
+    <div class="column">
       <div class="card">
         <h3>📌 我的资料</h3>
         <p>普通用户，记录点滴。</p>
@@ -141,19 +154,17 @@
       </div>
     </div>
 
-    <!-- 中栏 -->
-    <div class="center">
+    <div class="column">
       <div class="card">
         <h3>💬 留言板</h3>
         <input type="text" id="nameInput" placeholder="你的昵称">
         <textarea id="msgInput" placeholder="写点什么..."></textarea>
-        <button onclick="addMessage()">提交</button>
+        <div>
+          <button onclick="addMessage()">提交</button>
+        </div>
         <div id="msgList"></div>
       </div>
     </div>
-
-    <!-- 右栏 -->
-    <div class="right"></div>
   </div>
 
   <div class="footer">© 2025 Liao Shun</div>
@@ -173,10 +184,10 @@
     function renderMessages() {
       const list = document.getElementById('msgList');
       list.innerHTML = '';
-      [...messages].reverse().forEach(msg => {
+      [...messages].reverse().slice(0, 10).forEach(msg => {
         const div = document.createElement('div');
         div.className = 'message-item';
-        div.innerHTML = `<strong style="color:#0fffc1">${msg.name}</strong>：${msg.text}<br><div class="timestamp">${msg.time}</div>`;
+        div.innerHTML = `<strong style="color:#000">${msg.name}</strong>：${msg.text}<br><div class="timestamp">${msg.time}</div>`;
         list.appendChild(div);
       });
     }
