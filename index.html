@@ -1,24 +1,100 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta charset="UTF-8" />
   <title>Liao Shun Index</title>
-  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    body, html {
+      height: 100%;
+      background: #0d0d0d;
+      color: #f0f0f0;
+      overflow-x: hidden;
+    }
+
+    #particles-js {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+    }
+
+    .hero {
+      background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e') center/cover no-repeat;
+      height: 100vh;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      z-index: 0;
+    }
+
+    .avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 4px solid #0fffc1;
+      object-fit: cover;
+      box-shadow: 0 0 15px #0fffc1, 0 0 25px #7e0fff;
+      animation: pulse 2.5s infinite alternate;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 15px #0fffc1, 0 0 25px #7e0fff; }
+      100% { box-shadow: 0 0 25px #0fffc1, 0 0 35px #7e0fff; }
+    }
+
+    .name {
+      font-size: 28px;
+      font-weight: 700;
+      color: #0fffc1;
+      text-shadow: 0 0 8px #0fffc1, 0 0 20px #7e0fff;
+      margin-top: 16px;
+    }
+
+    .quote {
+      margin-top: 10px;
+      font-size: 14px;
+      font-style: italic;
+      color: #eee;
+      animation: flicker 3s infinite;
+    }
+
+    @keyframes flicker {
+      0% { opacity: 1; }
+      50% { opacity: 0.4; }
+      100% { opacity: 1; }
+    }
+
+    .footer {
+      position: absolute;
+      bottom: 20px;
+      text-align: center;
+      font-size: 12px;
+      color: #888;
+      width: 100%;
+    }
+  </style>
 </head>
 <body>
-  <div id="particles-js" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;"></div>
-  <!-- 其他 HTML 结构... -->
-  <script>
-    // 延迟初始化，确保元素已插入
-    window.addEventListener('DOMContentLoaded', () => {
-      if (typeof particlesJS === 'function') {
-        particlesJS('particles-js', { /* 配置 */ });
-      } else {
-        console.error('particlesJS 未加载成功');
-      }
-      // 其他初始化...
-    });
-  </script>
-</body>
-</html>
+
+<!-- 粒子背景 -->
+<div id="particles-js"></div>
+
+<!-- 顶部全屏海洋背景 + 中心头像与文字 -->
+<div class="hero">
+  <img class="avatar" src="https://i.pravatar.cc/150?img=12" alt="头像">
+  <div class=
