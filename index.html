@@ -22,6 +22,7 @@
       box-shadow: 0 0 10px #333;
       width: 100%;
       max-width: 600px;
+      margin-bottom: 2rem;
     }
     .team {
       display: flex;
@@ -52,13 +53,21 @@
     .green { background: #2e8b57; }
     .yellow { background: #ffcc00; color: #000; }
     .red { background: #cc0000; }
+    .main-container {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: flex-start;
+      width: 100%;
+      max-width: 1280px;
+    }
     .control {
-      margin-top: 2rem;
       background: linear-gradient(to right, #1e1e1e, #1a1a1a);
       padding: 1.5rem 2rem;
       border-radius: 20px;
       width: 100%;
-      max-width: 680px;
+      max-width: 600px;
       box-shadow: 0 0 16px rgba(0,0,0,0.5);
       border: 1px solid #333;
     }
@@ -108,41 +117,47 @@
 </head>
 <body>
   <h2>Sunlia Dota 实盘比分板</h2>
-  <div class="scoreboard">
-    <div class="team">
-      <div><strong>夜魇（Aurora）</strong></div>
-      <div><strong id="score1">24</strong> 击杀</div>
+  <div class="main-container">
+    <div class="scoreboard">
+      <div class="team">
+        <div><strong id="team1Name">夜魇（Aurora）</strong></div>
+        <div><strong id="score1">24</strong> 击杀</div>
+      </div>
+      <div class="team">
+        <div><strong id="team2Name">天辉（XG）</strong></div>
+        <div><strong id="score2">10</strong> 击杀</div>
+      </div>
+      <div class="info" id="statusText">
+        <p>当前节奏：Aurora 团灭 XG，处于控图推进阶段</p>
+        <p>经济差：+9.5K</p>
+        <p>控盾情况：未持盾</p>
+      </div>
+      <div class="status">
+        <div class="tag green">✅ 建议持有 Aurora 独赢</div>
+        <div class="tag yellow">⚠️ 暂缓 Aurora 打穿盘口</div>
+        <div class="tag red">⛔ 回避 XG 所有盘口</div>
+      </div>
     </div>
-    <div class="team">
-      <div><strong>天辉（XG）</strong></div>
-      <div><strong id="score2">10</strong> 击杀</div>
-    </div>
-    <div class="info" id="statusText">
-      <p>当前节奏：Aurora 团灭 XG，处于控图推进阶段</p>
-      <p>经济差：+9.5K</p>
-      <p>控盾情况：未持盾</p>
-    </div>
-    <div class="status">
-      <div class="tag green">✅ 建议持有 Aurora 独赢</div>
-      <div class="tag yellow">⚠️ 暂缓 Aurora 打穿盘口</div>
-      <div class="tag red">⛔ 回避 XG 所有盘口</div>
-    </div>
-  </div>
 
-  <div class="control">
-    <h3>🎮 实时控制台</h3>
-    <div class="control-grid">
-      <label>夜魇击杀：<input type="number" id="input1" value="24"></label>
-      <label>天辉击杀：<input type="number" id="input2" value="10"></label>
-      <label>节奏说明：<input id="input3" value="Aurora 团灭 XG，处于控图推进阶段"></label>
-      <label>经济差：<input id="input4" value="+9.5K"></label>
-      <label>控盾情况：<input id="input5" value="未持盾"></label>
+    <div class="control">
+      <h3>🎮 实时控制台</h3>
+      <div class="control-grid">
+        <label>队伍1名称：<input id="inputTeam1" value="夜魇（Aurora）"></label>
+        <label>队伍2名称：<input id="inputTeam2" value="天辉（XG）"></label>
+        <label>夜魇击杀：<input type="number" id="input1" value="24"></label>
+        <label>天辉击杀：<input type="number" id="input2" value="10"></label>
+        <label>节奏说明：<input id="input3" value="Aurora 团灭 XG，处于控图推进阶段"></label>
+        <label>经济差：<input id="input4" value="+9.5K"></label>
+        <label>控盾情况：<input id="input5" value="未持盾"></label>
+      </div>
+      <button onclick="updateBoard()">💾 更新比分板</button>
     </div>
-    <button onclick="updateBoard()">💾 更新比分板</button>
   </div>
 
   <script>
     function updateBoard() {
+      document.getElementById('team1Name').textContent = document.getElementById('inputTeam1').value;
+      document.getElementById('team2Name').textContent = document.getElementById('inputTeam2').value;
       document.getElementById('score1').textContent = document.getElementById('input1').value;
       document.getElementById('score2').textContent = document.getElementById('input2').value;
       const s = document.getElementById('input3').value;
