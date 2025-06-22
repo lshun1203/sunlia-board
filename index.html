@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sunlia 比分板</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background-color: #111;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1rem;
+    }
+    .scoreboard {
+      background-color: #222;
+      padding: 1rem 2rem;
+      border-radius: 16px;
+      box-shadow: 0 0 10px #333;
+      width: 100%;
+      max-width: 600px;
+    }
+    .team {
+      display: flex;
+      justify-content: space-between;
+      margin: 1rem 0;
+      font-size: 1.2rem;
+    }
+    .info {
+      margin-top: 1rem;
+      font-size: 0.95rem;
+      background-color: #333;
+      padding: 1rem;
+      border-radius: 8px;
+    }
+    .status {
+      margin-top: 1rem;
+      display: flex;
+      gap: 1rem;
+      justify-content: space-around;
+    }
+    .tag {
+      padding: 0.4rem 0.8rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: bold;
+    }
+    .green { background: #2e8b57; }
+    .yellow { background: #ffcc00; color: #000; }
+    .red { background: #cc0000; }
+  </style>
+</head>
+<body>
+  <h2>Sunlia Dota 实盘比分板</h2>
+  <div class="scoreboard">
+    <div class="team">
+      <div><strong>夜魇（Aurora）</strong></div>
+      <div><strong>24</strong> 击杀</div>
+    </div>
+    <div class="team">
+      <div><strong>天辉（XG）</strong></div>
+      <div><strong>10</strong> 击杀</div>
+    </div>
+    <div class="info">
+      <p>当前节奏：Aurora 团灭 XG，处于控图推进阶段</p>
+      <p>经济差：+9.5K</p>
+      <p>控盾情况：未持盾</p>
+    </div>
+    <div class="status">
+      <div class="tag green">✅ 建议持有 Aurora 独赢</div>
+      <div class="tag yellow">⚠️ 暂缓 Aurora 打穿盘口</div>
+      <div class="tag red">⛔ 回避 XG 所有盘口</div>
+    </div>
+  </div>
+</body>
+</html>
